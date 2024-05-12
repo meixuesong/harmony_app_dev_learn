@@ -18,12 +18,25 @@ struct Index {
         .fontSize(30)
         .width('100%')
         .padding(12)
-      ForEach(this.backlogs, (item: Backlog) => {
-        BacklogView({ model: item })
-      }, (item: Backlog, index: number) => item.title)
+      ForEach(this.backlogs, (item: Backlog, index: number) => {
+        Row({space: 5}) {
+          BacklogView({ model: item })
+            .width('80%')
+
+          Text("删除")
+            .fontColor("#ff0000")
+            .padding(10)
+            .width(60)
+            .onClick(() => {
+              this.backlogs.splice(index, 1)
+            })
+        }
+        .backgroundColor("#fff")
+
+      }, (item: Backlog, index: number) => item.title + '_' + index)
 
       Row({ space: 5 }) {
-        TextInput({ placeholder: 'enter new backlog' })
+        TextInput({ text: this.newBacklogTitle, placeholder: 'enter new backlog'})
           .onChange((value: string) => {
             this.newBacklogTitle = value
           })

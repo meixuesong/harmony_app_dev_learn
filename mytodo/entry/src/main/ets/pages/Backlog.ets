@@ -31,7 +31,6 @@ struct BacklogView {
     }
     .padding(6)
     .height(60)
-    .backgroundColor("#fff")
   }
 }
 
